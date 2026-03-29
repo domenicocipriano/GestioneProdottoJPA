@@ -29,6 +29,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
+		String path = request.getRequestURI();
+		System.out.println("Request Path: " + path);
+		if(path.startsWith("/h2-console/")) {
+			filterChain.doFilter(request, response);
+			return;
+		}
 		
 		String token = request.getHeader("Authorization"); // Estrae il token dall'header Authorization
 		if(token != null && token.startsWith("Bearer ")) { // Controlla che il token sia presente

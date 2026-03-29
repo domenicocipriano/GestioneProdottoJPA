@@ -36,13 +36,17 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	    http
-	        .csrf(csrf -> csrf.disable())	// Disabilita CSRF per le API REST
+	        .csrf(csrf -> csrf.disable())// Disabilita CSRF per le API REST
+	        .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin())) // Disabilita frame options per H2 Console
 	        .authorizeHttpRequests(requests -> requests
+	        		
 	        	.requestMatchers("/api/auth/login").permitAll()  // Permetti l'accesso alla rotta di login senza autenticazione
 	        	.requestMatchers("/error").permitAll()
 //	        	.requestMatchers("/api/reports/**").hasRole("ADMIN") // Solo utenti con ruolo ADMIN possono accedere a /api/reports
 	            .requestMatchers("/api/auth/register1").permitAll()	// Permetti l'accesso alla rotta di registrazione senza autenticazione
 	            .requestMatchers("/api/auth/register").permitAll()	// Permetti l'accesso alla rotta di registrazione senza autenticazione
+	            .requestMatchers("/h2-console/**").permitAll()
+	            // Permetti l'accesso alla console H2 senza autenticazione
 //	            .requestMatchers("/api/login").permitAll()
 //	            .requestMatchers("/admin/**").hasRole("ADMIN")		//solo utenti con ruolo ADMIN
 //	            .requestMatchers("/welcome/**").hasAuthority("read")	//solo utenti con permesso read

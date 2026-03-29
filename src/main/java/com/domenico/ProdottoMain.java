@@ -21,7 +21,7 @@ import com.domenico.services.ProdottoServiceTransaction;
 import com.domenico.services.UtenteService;
 
 
-@SpringBootApplication
+
 public class ProdottoMain {
 
 	public static void main(String[] args) {

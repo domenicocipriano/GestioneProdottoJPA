@@ -20,11 +20,11 @@ public class UtenteController {
 		this.utenteService = utenteService;
 	}
 	@PostMapping("/register")
-	public ResponseEntity<String> registraUtente(@RequestBody Utente utente) {
+	public ResponseEntity<Utente> registraUtente(@RequestBody Utente utente) {
 		
 		utenteService.registraUtente(utente.getUsername(), utente.getPassword(), utente.getRuolo());
 		System.out.println("Utente registrato: " + utente.getUsername());
-		return ResponseEntity.ok("Utente registrato con successo");
+		return ResponseEntity.ok(utente);
 	}
 	@PostMapping("/api/login")
 	public ResponseEntity<String> loginUtente(@RequestBody Utente utente) {

@@ -2,8 +2,8 @@ package com.domenico;
 
 import java.util.List;
 
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -33,6 +33,7 @@ public class UtentiServiceTest {
 		Mockito.when(utenteRepository.findAll()).thenReturn(mockUtenti);
 		List<Utente> utenti = utenteService.dammiTuttiUtenti();
 		Assertions.assertEquals(2, utenti.size(), "Dovrebbero esserci 2 utenti nel mock repository");
+		Assertions.assertEquals("domyc79", utenti.get(0).getUsername(), "Il primo username non corrisponde");
 	}
 	
 
